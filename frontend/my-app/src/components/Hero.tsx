@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SignInButton, SignedOut, SignedIn } from "@clerk/nextjs";
 
 export default function Hero() {
+  
   return (
     <section className="relative bg-gradient-to-b from-gray-50 to-white pt-24 pb-5">
       <div className="max-w-4xl mx-auto px-6 flex flex-col items-center text-center">
@@ -37,7 +38,7 @@ export default function Hero() {
           {/* This button will only show if the user is signed IN */}
           <SignedIn>
             <Link 
-              href="/dashboard"
+              href="https://dashboard.clerk.com/apps/app_31bkNHs5UoGIjv0mEWPMYCm6eam/instances/ins_31bkNKgaqnuPkfS951dcXPxjt0o/user-authentication/user-and-authentication"
               className="px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md hover:scale-105 hover:shadow-lg transition"
             >
               🚀 Go to Dashboard
