@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { SignInButton, SignedOut, SignedIn } from "@clerk/nextjs";
-
+import { SignInButton, SignedOut, SignedIn } from "@clerk/nextjs"
 export default function Hero() {
   
   return (
@@ -38,7 +37,7 @@ export default function Hero() {
           {/* This button will only show if the user is signed IN */}
           <SignedIn>
             <Link 
-              href="https://dashboard.clerk.com/apps/app_31bkNHs5UoGIjv0mEWPMYCm6eam/instances/ins_31bkNKgaqnuPkfS951dcXPxjt0o/user-authentication/user-and-authentication"
+              href="/dashboard"
               className="px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-blue-600 to-indigo-600 shadow-md hover:scale-105 hover:shadow-lg transition"
             >
               🚀 Go to Dashboard

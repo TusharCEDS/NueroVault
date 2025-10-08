@@ -8,7 +8,9 @@ export default function Home() {
     <div>
       <NavBar/>
       <HeroSection/>
+      
       <Features/>
+      
     </div>
   );
 }
