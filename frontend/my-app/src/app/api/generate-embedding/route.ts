@@ -42,20 +42,21 @@ export async function POST(req: Request) {
       texts: [limitedText],
       model: 'embed-english-v3.0',
       inputType: 'search_document',
-      embeddingTypes: ['float'],
     });
 
-    const embedding = response.embeddings.float[0];
+   // @ts-expect-error - Cohere SDK type inconsistency
+const embedding = response.embeddings[0];
 
     return NextResponse.json({
       success: true,
       embedding: embedding,
     });
 
-  } catch (error: any) {
-    console.error('Embedding generation error:', error);
+  } catch (error) {
+    const err = error as Error;
+    console.error('Embedding generation error:', err);
     return NextResponse.json(
-      { error: 'Failed to generate embedding', details: error.message },
+      { error: 'Failed to generate embedding', details: err.message },
       { status: 500 }
     );
   }

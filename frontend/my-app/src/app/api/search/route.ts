@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     });
 
     // @ts-expect-error - Cohere SDK type inconsistency
-    const queryEmbedding = embeddingResponse.embeddings[0];
+const queryEmbedding = embeddingResponse.embeddings[0];
 
     // First: Try semantic search with vector similarity
     const { data: vectorResults, error: vectorError } = await supabase.rpc('match_documents', {
