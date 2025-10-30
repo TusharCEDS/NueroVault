@@ -8,17 +8,16 @@ export const maxDuration = 60;
 
 async function extractPdfText(buffer: Buffer): Promise<string> {
   try {
-    // Dynamic import and disable worker
-    const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.js');
+    // Dynamic import for pdfjs-dist
+    const pdfjsLib = await import('pdfjs-dist');
     
     // Disable worker (causes issues in Next.js)
     pdfjsLib.GlobalWorkerOptions.workerSrc = '';
     
-    // Load PDF without worker
+    // Load PDF
     const loadingTask = pdfjsLib.getDocument({
       data: new Uint8Array(buffer),
       useSystemFonts: true,
-      isEvalSupported: false,
     });
     
     const pdf = await loadingTask.promise;
@@ -180,10 +179,11 @@ export async function POST(req: Request) {
       fileType: fileType || 'unknown',
     });
 
-  } catch (error: any) {
-    console.error('Text extraction error:', error);
+  } catch (error) {
+    const err = error as Error;
+    console.error('Text extraction error:', err);
     return NextResponse.json(
-      { error: 'Failed to extract text', details: error.message },
+      { error: 'Failed to extract text', details: err.message },
       { status: 500 }
     );
   }
